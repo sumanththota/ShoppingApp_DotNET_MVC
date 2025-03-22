@@ -1,0 +1,52 @@
+@model List<ShoppingApp.Models.Product>
+@{
+    ViewData["Title"] = "Shop";
+    var selectedCategory = Context.Request.Query["category"].ToString();
+    var categories = ViewBag.Categories as List<ShoppingApp.Models.Category>;
+    ShoppingApp.Models.Category? selectedCategoryEnum = null;
+    if (!string.IsNullOrEmpty(selectedCategory))
+    {
+        selectedCategoryEnum = Enum.TryParse<ShoppingApp.Models.Category>(selectedCategory, out var parsedCategory) ? parsedCategory : (ShoppingApp.Models.Category?)null;
+    }
+}
+
+<div class="container-fluid mt-4">
+    <div class="row">
+        <!-- Sidebar -->
+        <div class="col-md-3">
+            <h5>Categories</h5>
+            <ul class="list-group">
+                <li class="list-group-item @(selectedCategoryEnum == null ? "active" : "")">
+                    <a href="/Shop" class="text-decoration-none">All</a>
+                </li>
+                @foreach (var category in categories)
+                {
+                    <li class="list-group-item @(category == selectedCategoryEnum ? "active" : "")">
+                        <a href="/Shop?category=@category" class="text-decoration-none">@category</a>
+                    </li>
+                }
+            </ul>
+        </div>
+
+        <!-- Product Cards -->
+        <div class="col-md-9">
+            <h2 class="text-center">Shop Products</h2>
+            <div class="row row-cols-1 row-cols-md-3 g-4 mt-3">
+                @foreach (var product in Model.Where(p => selectedCategoryEnum == null || p.Category == selectedCategoryEnum))
+                {
+                    <div class="col">
+                        <div class="card h-100 shadow-sm">
+                            <div class="card-body">
+                                <h5 class="card-title">@product.Name</h5>
+                                <p class="card-text text-muted">@product.Category</p>
+                                <p class="card-text fw-bold">@product.Price.ToString("C")</p>
+                                <p class="card-text">In stock: @product.Quantity</p>
+                                <a href="#" class="btn btn-outline-primary w-100">Add to Cart</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

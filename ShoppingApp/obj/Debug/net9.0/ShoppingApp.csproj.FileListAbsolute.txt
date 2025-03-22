@@ -327,3 +327,4 @@
 /Users/sumanth/RiderProjects/ShoppingApp/ShoppingApp/bin/Debug/net9.0/runtimes/win/lib/net6.0/System.Windows.Extensions.dll
 /Users/sumanth/RiderProjects/ShoppingApp/ShoppingApp/obj/Debug/net9.0/ShoppingApp.sourcelink.json
 /Users/sumanth/RiderProjects/ShoppingApp/ShoppingApp/obj/Debug/net9.0/compressed/2jungymftm-pcze1smdz3.gz
+/Users/sumanth/RiderProjects/ShoppingApp/ShoppingApp/bin/Debug/net9.0/Newtonsoft.Json.dll

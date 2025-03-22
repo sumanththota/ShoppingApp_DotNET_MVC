@@ -11,11 +11,14 @@ public class AppDbContext :DbContext
     {
     }
 
-    public DbSet<Product> Products { get; set; } = default!;
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Product>()
             .Property(p => p.Category)
             .HasConversion<string>();
     }
+    public DbSet<Product> Products { get; set; } = default!;
+    public DbSet<Cart> Carts { get; set; } = default!;
+    public DbSet<CartItem> CartItems { get; set; } = default!;
 }

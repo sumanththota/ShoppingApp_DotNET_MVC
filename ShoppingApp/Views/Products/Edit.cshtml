@@ -1,0 +1,32 @@
+@model ShoppingApp.Models.Product
+
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h3>Edit a product</h3>
+
+<form asp-action="Edit" method="post">
+    <div class="card p-4">
+        <div class="mb-3">
+            <label for="Name" class="form-label">Name</label>
+            <input type="text" class="form-control" asp-for="Name"/>
+        </div>
+        <div class="mb-3">
+            <label for="Price" class="form-label">Price</label>
+            <input type="text" class="form-control" asp-for="Price"/>
+        </div>
+        <div class="mb-3">
+            <label for="Quantity" class="form-label">Quantity</label>
+            <input type="number" class="form-control" asp-for="Quantity"/>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Category" class="form-label">Category</label>
+            <select asp-for="Category" class="form-select" asp-items="Html.GetEnumSelectList<ShoppingApp.Models.Category>()">
+                <option value="">Select a category</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+</form>

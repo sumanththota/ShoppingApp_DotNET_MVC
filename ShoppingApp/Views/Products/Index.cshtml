@@ -14,6 +14,7 @@
         <th>Name</th>
         <th>Price</th>
         <th>Quantity</th>
+        <th>Category</th>
         <th>Actions</th>
     </tr>
     </thead>
@@ -24,6 +25,7 @@
             <td>@product.Name</td>
             <td>@product.Price.ToString("N2")$</td>
             <td>@product.Quantity</td>
+            <td>@product.Category</td>
             <td>
                 <a asp-action="Edit" asp-route-id="@product.Id">Edit</a> |
                 <a asp-action="Delete" asp-route-id="@product.Id">Delete</a>

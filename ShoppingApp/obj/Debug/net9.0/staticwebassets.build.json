@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Kulxq3RTxCcbrR8YSHcD6dmjAmYfEa0/Ww6oPvCCJvc=",
+  "Hash": "iaepJ6n+7FsdGNWO/DmWZxrMYtfIILq6IEWvrircypE=",
   "Source": "ShoppingApp",
   "BasePath": "_content/ShoppingApp",
   "Mode": "Default",
@@ -1548,6 +1548,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "/Users/sumanth/RiderProjects/ShoppingApp/ShoppingApp/wwwroot/js/site.js"
+    },
+    {
+      "Identity": "/Users/sumanth/RiderProjects/ShoppingApp/ShoppingApp/obj/Debug/net9.0/compressed/2jungymftm-pcze1smdz3.gz",
+      "SourceId": "ShoppingApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/sumanth/RiderProjects/ShoppingApp/ShoppingApp/obj/Debug/net9.0/compressed/",
+      "BasePath": "_content/ShoppingApp",
+      "RelativePath": "shopping-cart#[.{fingerprint=pcze1smdz3}]?.svg.gz",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "/Users/sumanth/RiderProjects/ShoppingApp/ShoppingApp/wwwroot/shopping-cart.svg",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "Fingerprint": "b1xroe6a0w",
+      "Integrity": "ATC3l/emSN+B/nXy30GdcoBSrPdgukfKng9DYzRIUs8=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "/Users/sumanth/RiderProjects/ShoppingApp/ShoppingApp/wwwroot/shopping-cart.svg"
     },
     {
       "Identity": "/Users/sumanth/RiderProjects/ShoppingApp/ShoppingApp/obj/Debug/net9.0/compressed/2tikzqlmtu-ag7o75518u.gz",
@@ -5349,6 +5370,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/lib/jquery/LICENSE.txt"
+    },
+    {
+      "Identity": "/Users/sumanth/RiderProjects/ShoppingApp/ShoppingApp/wwwroot/shopping-cart.svg",
+      "SourceId": "ShoppingApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/sumanth/RiderProjects/ShoppingApp/ShoppingApp/wwwroot/",
+      "BasePath": "_content/ShoppingApp",
+      "RelativePath": "shopping-cart#[.{fingerprint}]?.svg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "pcze1smdz3",
+      "Integrity": "hySOAMIDuL6poiEJh/oZlDzXR8OZkWkfJVB3x3zkIN0=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/shopping-cart.svg"
     }
   ],
   "Endpoints": [
@@ -34769,6 +34811,304 @@
         {
           "Name": "integrity",
           "Value": "sha256-fSIPwem7dkw/la3vh7zXsbgkmPg4WSIn3zJ+MvKWKVE="
+        }
+      ]
+    },
+    {
+      "Route": "shopping-cart.pcze1smdz3.svg",
+      "AssetFile": "/Users/sumanth/RiderProjects/ShoppingApp/ShoppingApp/obj/Debug/net9.0/compressed/2jungymftm-pcze1smdz3.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.003968253968"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "251"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ATC3l/emSN+B/nXy30GdcoBSrPdgukfKng9DYzRIUs8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 22 Mar 2025 20:09:43 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/svg+xml"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"hySOAMIDuL6poiEJh/oZlDzXR8OZkWkfJVB3x3zkIN0=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "pcze1smdz3"
+        },
+        {
+          "Name": "label",
+          "Value": "shopping-cart.svg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-hySOAMIDuL6poiEJh/oZlDzXR8OZkWkfJVB3x3zkIN0="
+        }
+      ]
+    },
+    {
+      "Route": "shopping-cart.pcze1smdz3.svg",
+      "AssetFile": "/Users/sumanth/RiderProjects/ShoppingApp/ShoppingApp/wwwroot/shopping-cart.svg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "383"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/svg+xml"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"hySOAMIDuL6poiEJh/oZlDzXR8OZkWkfJVB3x3zkIN0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 22 Mar 2025 20:09:43 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "pcze1smdz3"
+        },
+        {
+          "Name": "label",
+          "Value": "shopping-cart.svg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-hySOAMIDuL6poiEJh/oZlDzXR8OZkWkfJVB3x3zkIN0="
+        }
+      ]
+    },
+    {
+      "Route": "shopping-cart.pcze1smdz3.svg.gz",
+      "AssetFile": "/Users/sumanth/RiderProjects/ShoppingApp/ShoppingApp/obj/Debug/net9.0/compressed/2jungymftm-pcze1smdz3.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "251"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/svg+xml"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ATC3l/emSN+B/nXy30GdcoBSrPdgukfKng9DYzRIUs8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 22 Mar 2025 20:09:43 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "pcze1smdz3"
+        },
+        {
+          "Name": "label",
+          "Value": "shopping-cart.svg.gz"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-ATC3l/emSN+B/nXy30GdcoBSrPdgukfKng9DYzRIUs8="
+        }
+      ]
+    },
+    {
+      "Route": "shopping-cart.svg",
+      "AssetFile": "/Users/sumanth/RiderProjects/ShoppingApp/ShoppingApp/obj/Debug/net9.0/compressed/2jungymftm-pcze1smdz3.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.003968253968"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "251"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ATC3l/emSN+B/nXy30GdcoBSrPdgukfKng9DYzRIUs8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 22 Mar 2025 20:09:43 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/svg+xml"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"hySOAMIDuL6poiEJh/oZlDzXR8OZkWkfJVB3x3zkIN0=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-hySOAMIDuL6poiEJh/oZlDzXR8OZkWkfJVB3x3zkIN0="
+        }
+      ]
+    },
+    {
+      "Route": "shopping-cart.svg",
+      "AssetFile": "/Users/sumanth/RiderProjects/ShoppingApp/ShoppingApp/wwwroot/shopping-cart.svg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "383"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/svg+xml"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"hySOAMIDuL6poiEJh/oZlDzXR8OZkWkfJVB3x3zkIN0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 22 Mar 2025 20:09:43 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-hySOAMIDuL6poiEJh/oZlDzXR8OZkWkfJVB3x3zkIN0="
+        }
+      ]
+    },
+    {
+      "Route": "shopping-cart.svg.gz",
+      "AssetFile": "/Users/sumanth/RiderProjects/ShoppingApp/ShoppingApp/obj/Debug/net9.0/compressed/2jungymftm-pcze1smdz3.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "251"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/svg+xml"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ATC3l/emSN+B/nXy30GdcoBSrPdgukfKng9DYzRIUs8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 22 Mar 2025 20:09:43 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-ATC3l/emSN+B/nXy30GdcoBSrPdgukfKng9DYzRIUs8="
         }
       ]
     },

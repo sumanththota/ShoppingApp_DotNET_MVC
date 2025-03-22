@@ -257,6 +257,10 @@
       "PackagePath": "staticwebassets/lib/jquery/dist/jquery.slim.min.map"
     },
     {
+      "Id": "/Users/sumanth/RiderProjects/ShoppingApp/ShoppingApp/wwwroot/shopping-cart.svg",
+      "PackagePath": "staticwebassets/shopping-cart.svg"
+    },
+    {
       "Id": "obj/Debug/net9.0/staticwebassets/msbuild.ShoppingApp.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
     },

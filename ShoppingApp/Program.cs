@@ -19,16 +19,6 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
 
-// Add session services
-builder.Services.AddDistributedMemoryCache();
-builder.Services.AddSession(options =>
-{
-    options.IdleTimeout = TimeSpan.FromMinutes(30);
-    options.Cookie.HttpOnly = true;
-    options.Cookie.IsEssential = true;
-});
-
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -43,10 +33,7 @@ else
     app.UseHsts();
 }
 
-// Middleware pipeline
-app.UseStaticFiles();
 app.UseHttpsRedirection();
-app.UseSession();
 app.UseRouting();
 
 app.UseAuthorization();

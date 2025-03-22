@@ -9,6 +9,12 @@
         selectedCategoryEnum = Enum.TryParse<ShoppingApp.Models.Category>(selectedCategory, out var parsedCategory) ? parsedCategory : (ShoppingApp.Models.Category?)null;
     }
 }
+<div class="d-flex justify-content-end mt-3 me-4">
+    <a class="nav-link text-dark fw-bold d-flex align-items-center" asp-area="" asp-controller="Cart" asp-action="Index">
+        <img src="~/shopping-cart.svg" alt="Cart" width="20" height="20" class="me-2" />
+        Cart
+    </a>
+</div>
 
 <div class="container-fluid mt-4">
     <div class="row">
@@ -41,7 +47,14 @@
                                 <p class="card-text text-muted">@product.Category</p>
                                 <p class="card-text fw-bold">@product.Price.ToString("C")</p>
                                 <p class="card-text">In stock: @product.Quantity</p>
-                                <a href="#" class="btn btn-outline-primary w-100">Add to Cart</a>
+                                <form method="post" asp-action="Add" asp-controller="Cart">
+                                    <input type="hidden" name="productId" value="@product.Id" />
+                                    <input type="hidden" name="quantity" value="1" />
+                                    <input type="hidden" name="price" value="@product.Price" />
+                                    <input type="hidden" name="name" value="@product.Name" />
+                                    <input type="hidden" name="sessionId" id="sessionId-@product.Id" />
+                                    <button type="submit" class="btn btn-outline-primary w-100">Add to Cart</button>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -50,3 +63,18 @@
         </div>
     </div>
 </div>
+<script>
+    // Ensure sessionId exists in localStorage
+    let sessionId = localStorage.getItem("cartSessionId");
+    if (!sessionId) {
+        sessionId = crypto.randomUUID();
+        localStorage.setItem("cartSessionId", sessionId);
+    }
+
+    // Set sessionId for each product form
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll('input[id^="sessionId-"]').forEach(input => {
+            input.value = sessionId;
+        });
+    });
+</script>

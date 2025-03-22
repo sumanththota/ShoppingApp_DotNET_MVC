@@ -19,7 +19,6 @@ namespace MyApp.Controllers
 
         public async Task<IActionResult> ShopIndex(Category? category)
         {
-            _logger.LogInformation("ShopIndex action has been called.");
 
             var products = category == null
                 ? _context.Products.ToList()

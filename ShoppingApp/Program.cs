@@ -5,26 +5,23 @@ using ShoppingApp.Data;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-// Prioritize environment variable for connection string, fall back to appsettings.json
 var connectionString = Environment.GetEnvironmentVariable("RdsConnectionString") 
                        ?? builder.Configuration.GetConnectionString("RdsConnectionString") 
                        ?? throw new InvalidOperationException("Connection string 'RdsConnectionString' not found.");
-
-// Register AppDbContext for your app's data
-builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlServer(connectionString)); // Reuse the same connection string
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlServer(connectionString));
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-// Configure Identity
-builder.Services.AddDefaultIdentity<IdentityUser>(options => 
-        options.SignIn.RequireConfirmedAccount = false)
+builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
 builder.Services.AddControllersWithViews();
 
-// Session configuration
+//session
+
 builder.Services.AddDistributedMemoryCache();
+
 builder.Services.AddSession(options =>
 {
     options.IdleTimeout = TimeSpan.FromSeconds(1000);
@@ -32,9 +29,10 @@ builder.Services.AddSession(options =>
     options.Cookie.IsEssential = true;
 });
 
+
 var app = builder.Build();
 
-// Configure the HTTP request pipeline
+// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseMigrationsEndPoint();
@@ -42,15 +40,18 @@ if (app.Environment.IsDevelopment())
 else
 {
     app.UseExceptionHandler("/Home/Error");
+    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
 app.UseHttpsRedirection();
+
 app.UseRouting();
+
 app.UseAuthorization();
+
 app.UseSession();
 
-// Assuming WithStaticAssets() is from a library like LibMan or a custom extension
 app.MapStaticAssets();
 
 app.MapControllerRoute(

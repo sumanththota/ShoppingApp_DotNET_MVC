@@ -37,6 +37,11 @@ steps:
       publishWebProjects: true
       zipAfterPublish: true
 
+  - script: |
+      echo "Listing contents of $(Build.ArtifactStagingDirectory)/app"
+      ls -la $(Build.ArtifactStagingDirectory)/app
+    displayName: 'List published files'
+
   - task: PublishBuildArtifacts@1
     displayName: 'Publish Artifacts'
     inputs:

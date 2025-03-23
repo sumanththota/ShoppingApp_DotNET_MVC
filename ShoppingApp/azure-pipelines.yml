@@ -1,58 +1,70 @@
 trigger:
-  branches:
-    include:
-      - main
+ branches:
+   include:
+     - main
 
 pool:
-  vmImage: 'ubuntu-latest'
+ vmImage: 'ubuntu-latest'
 
 variables:
-  solution: '**/*.sln'
-  buildPlatform: 'Any CPU'
-  buildConfiguration: 'Release'
-  rdsConnectionString: '$(RdsConnectionString)' # Secret variable
+ buildConfiguration: 'Release'
+ project: 'ShoppingApp/ShoppingApp.csproj' # Specify your project
+ artifactBucket: 'elasticbeanstalk-us-east-1-youraccountid' # Add your S3 bucket
+ s3Path: 'shopping-app'
+ rdsConnectionString: '$(RdsConnectionString)'
 
 steps:
-  - task: DotNetCoreCLI@2
-    displayName: 'Restore NuGet packages'
-    inputs:
-      command: 'restore'
-      projects: '**/*.csproj'
+ - task: DotNetCoreCLI@2
+   displayName: 'Restore NuGet packages'
+   inputs:
+     command: 'restore'
+     projects: '$(project)'
 
-  - task: DotNetCoreCLI@2
-    displayName: 'Build'
-    inputs:
-      command: 'build'
-      projects: '**/*.csproj'
-      arguments: '--configuration $(buildConfiguration)'
+ - task: DotNetCoreCLI@2
+   displayName: 'Build'
+   inputs:
+     command: 'build'
+     projects: '$(project)'
+     arguments: '--configuration $(buildConfiguration)'
 
-  - task: DotNetCoreCLI@2
-    displayName: 'Publish'
-    inputs:
-      command: 'publish'
-      projects: '**/*.csproj'
-      arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)/app'
-      publishWebProjects: true
-      zipAfterPublish: true
+ - task: DotNetCoreCLI@2
+   displayName: 'Publish'
+   inputs:
+     command: 'publish'
+     projects: '$(project)'
+     arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)/app'
+     publishWebProjects: true
+     zipAfterPublish: true
 
-  - task: PublishBuildArtifacts@1
-    displayName: 'Publish Artifacts'
-    inputs:
-      pathToPublish: '$(Build.ArtifactStagingDirectory)/app'
-      artifactName: 'app'
+ - task: S3Upload@1
+   displayName: 'Upload to S3'
+   inputs:
+     awsCredentials: 'aws-connection'
+     regionName: 'us-east-1'
+     bucketName: '$(artifactBucket)'
+     targetFolder: '$(s3Path)'
+     sourceFolder: '$(Build.ArtifactStagingDirectory)/app'
+     globExpressions: '*.zip'
 
-  - task: AWSElasticBeanstalkDeploy@1
-    displayName: 'Deploy to Elastic Beanstalk'
-    inputs:
-      awsCredentials: 'aws-connection'
-      regionName: 'us-east-1' # Adjust to your region
-      applicationName: 'ShoppingApplication'
-      environmentName: 'production'
-      deploymentPackage: '$(Build.ArtifactStagingDirectory)/app/app.zip'
-
-  - script: |
-      dotnet tool install -g dbup-sqlserver
-      dbup-sqlserver --connection-string "$(rdsConnectionString)" --scripts "database/migrations"
-    displayName: 'Run SQL Migrations'
-    env:
-      RdsConnectionString: $(rdsConnectionString)
+ - task: AWSElasticBeanstalkDeploy@1
+   displayName: 'Deploy to Elastic Beanstalk'
+   inputs:
+     awsCredentials: 'aws-connection'
+     regionName: 'us-east-1'
+     applicationName: 'ShoppingApplication'
+     environmentName: 'production'
+     deploymentPackage: '$(Build.ArtifactStagingDirectory)/app/app.zip'
+ - task: BeanstalkDeployApplication@1
+   inputs:
+     awsCredentials: 'AWSBeanstalk-AzureDevops'
+     regionName: 'us-east-1'
+     applicationName: 'ShoppingApp'
+     environmentName: 'ShoppingApp-env'
+     applicationType: 'aspnetCoreLinux'
+     dotnetPublishPath: '$(Build.ArtifactStagingDirectory)/app/app.zip'
+ - script: |
+     dotnet tool install -g dbup-sqlserver
+     dbup-sqlserver --connection-string "$(rdsConnectionString)" --scripts "database/migrations"
+   displayName: 'Run SQL Migrations'
+   env:
+     RdsConnectionString: $(rdsConnectionString)

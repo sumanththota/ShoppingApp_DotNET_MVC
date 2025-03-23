@@ -9,9 +9,9 @@ namespace MyApp.Controllers
     {
         private readonly ILogger<ShopController> _logger;
 
-        private readonly AppDbContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public ShopController(ILogger<ShopController> logger, AppDbContext context)
+        public ShopController(ILogger<ShopController> logger, ApplicationDbContext context)
         {
             _logger = logger;
             _context = context;

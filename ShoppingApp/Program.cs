@@ -5,13 +5,11 @@ using ShoppingApp.Data;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-var connectionString = builder.Configuration.GetConnectionString("IdentityConnection") ??
-                       throw new InvalidOperationException("Connection string 'IdentityConnection' not found.");
+var connectionString = Environment.GetEnvironmentVariable("RdsConnectionString") 
+                       ?? builder.Configuration.GetConnectionString("RdsConnectionString") 
+                       ?? throw new InvalidOperationException("Connection string 'RdsConnectionString' not found.");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
-
-builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("ModelConnection")));
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 

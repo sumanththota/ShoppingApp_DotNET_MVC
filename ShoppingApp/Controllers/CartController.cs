@@ -12,10 +12,10 @@ public class CartController : Controller
    
     private readonly ILogger<CartController> _logger;
 
-    private readonly AppDbContext _context;
+    private readonly ApplicationDbContext _context;
     private string sessionId { get; set; }
 
-    public CartController(ILogger<CartController> logger, AppDbContext context)
+    public CartController(ILogger<CartController> logger, ApplicationDbContext context)
     {
         _logger = logger;
         _context = context;
@@ -28,6 +28,10 @@ public class CartController : Controller
         var cart = await _context.Carts
             .Include(c => c.Items)
             .FirstOrDefaultAsync(c => c.SessionId == sessionId);
+        if (cart == null)
+        {
+            return RedirectToAction("Index", "Shop");
+        }
       
         
         List<CartItem> cartItems = await _context.CartItems.Where(ci => ci.CartId == cart.Id).ToListAsync();
@@ -79,6 +83,7 @@ public class CartController : Controller
     public async Task<IActionResult> Update(int productId, int quantity)
     {
         // Retrieve the session ID from the request cookies
+        var sessionId = Request.Cookies["cartSessionId"];
         if (string.IsNullOrEmpty(sessionId))
         {
             return RedirectToAction("Index");

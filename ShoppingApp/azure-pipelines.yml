@@ -7,9 +7,11 @@ pool: 'Default'
 
 variables:
   solution: '**/*.sln'
+  debug: 'Verbose'
   buildPlatform: 'Any CPU'
+  artifact_bucket: 'elasticbeanstalk-us-east-1-780492718645'
   buildConfiguration: 'Release'
-  rdsConnectionString: '$(RdsConnectionString)' # Secret variable
+  s3_path: 'dotnet-mvc-app'
 
 steps:
   - task: DotNetCoreCLI@2
@@ -17,6 +19,7 @@ steps:
     inputs:
       command: 'restore'
       projects: '**/*.csproj'
+      feedsToUse: 'select'
 
   - task: DotNetCoreCLI@2
     displayName: 'Build'
@@ -39,6 +42,14 @@ steps:
     inputs:
       pathToPublish: '$(Build.ArtifactStagingDirectory)/app'
       artifactName: 'app'
+  - task: S3Upload@1
+    inputs:
+      awsCredentials: 'AWS-summanth'
+      regionName: 'us-east-1'
+      bucketName: '$(artifact_bucket)'
+      targetFolder: $(s3_path)
+      sourceFolder: '$(Build.ArtifactStagingDirectory)'
+      globExpressions: 'app.zip'
 
 
   - task: BeanstalkDeployApplication@1

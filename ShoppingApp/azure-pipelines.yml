@@ -54,7 +54,7 @@ steps:
       bucketName: '$(artifact_bucket)'
       targetFolder: $(s3_path)
       sourceFolder: '$(Build.ArtifactStagingDirectory)'
-      globExpressions: 'app.zip'
+      globExpressions: '*.zip'
 
 
   - task: BeanstalkDeployApplication@1
@@ -65,4 +65,4 @@ steps:
       applicationName: 'ShoppingApp'
       environmentName: 'ShoppingApp-env'
       applicationType: 'aspnetCoreLinux'
-      dotnetPublishPath: '$(Build.ArtifactStagingDirectory)/app/app.zip'
+      dotnetPublishPath: '$(Build.ArtifactStagingDirectory)/app/ShoppingApp.zip'

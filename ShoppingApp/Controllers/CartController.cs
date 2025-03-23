@@ -79,17 +79,14 @@ public class CartController : Controller
     public async Task<IActionResult> Update(int productId, int quantity)
     {
         // Retrieve the session ID from the request cookies
-        var sessionId = Request.Cookies["cartSessionId"];
         if (string.IsNullOrEmpty(sessionId))
         {
             return RedirectToAction("Index");
         }
-        _logger.LogInformation("captured session:{sessoionId}", sessionId);
         // Fetch the cart using the session ID
         var cart = await _context.Carts
             .Include(c => c.Items)
             .FirstOrDefaultAsync(c => c.SessionId == sessionId);
-        _logger.LogInformation("captured cart:{cart}", cart);
 
         if (cart == null)
         {
@@ -98,16 +95,14 @@ public class CartController : Controller
 
         // Retrieve the existing item by productId
         var existingItem = cart.Items.FirstOrDefault(i => i.ProductId == productId);
-        _logger.LogInformation("captured item:{existingItem.ProductId}", existingItem.ProductId);
+        
         if (existingItem == null)
         {
             return RedirectToAction("Index");
         }
-        _logger.LogInformation("captured item:{existingItem.Quantity}", existingItem.Quantity);
 
         // Update the item's quantity
         existingItem.Quantity += quantity;
-        _logger.LogInformation("captured quantity after updation:{existingItem.Quantity}", existingItem.Quantity);
 
         // If the updated quantity is zero or less, remove the item from the cart
         if (existingItem.Quantity <= 0)

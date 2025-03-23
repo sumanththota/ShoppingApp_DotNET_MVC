@@ -17,7 +17,7 @@ namespace MyApp.Controllers
             _context = context;
         }
 
-        public async Task<IActionResult> ShopIndex(Category? category)
+        public async Task<IActionResult> Index(Category? category)
         {
 
             var products = category == null

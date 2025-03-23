@@ -1,7 +1,53 @@
-@model List<ShoppingApp.Models.Cart>
+@model List<ShoppingApp.Models.CartItem>
 @{
     ViewData["Title"] = "Cart";
     
 }
 <h3> Cart Details</h3>
- 
+  <div class="cart-container" style="max-width: 900px; margin: auto; padding: 20px; background-color: #f9f9f9; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+      <table class="table table-striped">
+          <thead class="thead-dark">
+              <tr>
+                  <th scope="col">Product</th>
+                  <th scope="col">Price</th>
+                  <th scope="col">Quantity</th>
+                  <th scope="col">Total</th>
+              </tr>
+          </thead>
+          <tbody>
+              @foreach (var item in Model)
+              {
+                  <tr>
+                      <td>@item.Name</td>
+                      <td>$@item.Price.ToString("0.00")</td>
+                      <td>
+                          <form asp-action="Update" method="post" class="d-inline">
+                              <input type="hidden" name="productId" value="@item.ProductId" />
+                              <input type="hidden" name="quantity" value=-1 />
+                              <button type="submit" name="operation" value="decrement" class="btn btn-sm btn-secondary">-</button>
+                          </form>
+                          <span class="mx-2">@item.Quantity</span>
+                          <form asp-action="Update" method="post" class="d-inline">
+                              <input type="hidden" name="productId" value="@item.ProductId" />
+                              <input type="hidden" name="quantity" value=1 />
+                              <button type="submit" name="operation" value="increment" class="btn btn-sm btn-secondary">+</button>
+                          </form>
+                      </td>
+                      <td>$@(item.Price * item.Quantity)</td>
+                  </tr>
+              }
+          </tbody>
+      </table>
+
+@{
+    var totalPrice = Model.Sum(item => item.Price * item.Quantity);
+}
+<div class="d-flex justify-content-end align-items-center mt-3">
+    <h4 class="me-3">Total:</h4>
+    <h4 class="text-primary">$@totalPrice.ToString("0.00")</h4>
+</div>
+
+      <div style="display: flex; justify-content: flex-end; margin-top: 20px;">
+          <a href="/Checkout" class="btn btn-success btn-lg">Proceed to Checkout</a>
+      </div>
+  </div>

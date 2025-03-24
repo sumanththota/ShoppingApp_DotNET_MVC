@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using ShoppingApp.Data;
 using ShoppingApp.Models;
 using Stripe.Checkout;
@@ -12,12 +13,14 @@ public class CheckoutController : Controller
 {
     private readonly ILogger<CheckoutController> _logger;
     private ApplicationDbContext _context;
+    private readonly AppSettings _appSettings;
     private string sessionId { get; set; }
     
-    public CheckoutController(ILogger<CheckoutController> logger, ApplicationDbContext context)
+    public CheckoutController(ILogger<CheckoutController> logger, ApplicationDbContext context,IOptions<AppSettings> appSettings)
     {
         _logger = logger;
         _context = context;
+        _appSettings = appSettings.Value;
     }
     public IActionResult Checkout()
     {
@@ -39,7 +42,7 @@ public class CheckoutController : Controller
         decimal total = cartItems.Sum(item => item.Price * item.Quantity);
         
         _logger.LogInformation("Creating checkout session");
-        var domain = "http://localhost:4242";
+        var domain = _appSettings.DomainUrl;
         var options = new SessionCreateOptions
         {
             UiMode = "embedded",
@@ -60,11 +63,31 @@ public class CheckoutController : Controller
                 },
             },
             Mode = "payment",
-            ReturnUrl = domain + "/return.html?session_id={CHECKOUT_SESSION_ID}",
+            ReturnUrl = Url.Action("Return", "Checkout", new { session_id = "{CHECKOUT_SESSION_ID}" }, Request.Scheme)
         };
         var service = new SessionService();
         Session session = service.Create(options);
 
         return Json (new {clientSecret = session.ClientSecret});
+    }
+    
+    [Route("session-status")]
+    [ApiController]
+    public class SessionStatusController : Controller
+    {
+        [HttpGet]
+        public ActionResult SessionStatus([FromQuery] string session_id)
+        {
+            var sessionService = new SessionService();
+            Session session = sessionService.Get(session_id);
+
+            return Json(new {status = session.Status,  customer_email = session.CustomerDetails.Email});
+        }
+    }
+    [HttpGet("return")]
+    public IActionResult Return(string session_id)
+    {
+        ViewBag.SessionId = session_id;
+        return View("return");
     }
 }

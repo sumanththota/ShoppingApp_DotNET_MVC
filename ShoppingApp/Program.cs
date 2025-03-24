@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using ShoppingApp.Data;
+using ShoppingApp.Models;
 using Stripe;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -19,6 +20,8 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
 
 builder.Services.AddControllersWithViews();
 
+
+builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
 //session
 
 builder.Services.AddDistributedMemoryCache();

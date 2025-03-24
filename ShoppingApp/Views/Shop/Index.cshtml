@@ -19,11 +19,25 @@
             : (ShoppingApp.Models.Category?)null;
     }
 }
+<style>
+    /* Custom style for active category list items to improve contrast and aesthetics */
+    .list-group-item.active {
+        background-color: #ffdd57 !important;  /* A warm, contrasting gold */
+        border-color: #ffc107 !important;
+        color: #333 !important;
+    }
+    /* Smooth transition for background and text colors */
+    .list-group-item {
+        transition: background-color 0.3s, color 0.3s;
+    }
+</style>
 <div class="d-flex justify-content-end mt-3 me-4">
+    
     <a class="nav-link text-dark fw-bold d-flex align-items-center" asp-area="" asp-controller="Cart" asp-action="Index">
-        <img src="~/shopping-cart.svg" alt="Cart" width="25" height="25" class="me-2" />
+        <img src="~/shopping-cart.svg" alt="Cart" width="25" height="25" class="me-2"/>
         Cart
     </a>
+    
 </div>
 
 <div class="container-fluid mt-4">
@@ -42,6 +56,13 @@
                     </li>
                 }
             </ul>
+            <div class="mt-5">
+                <a class="nav-link text-dark fw-bold d-flex align-items-center ms-3" asp-area="" asp-controller="Products" asp-action="Index">
+                    <img src="~/archive.svg" alt="Inventory" width="25" height="25" class="me-2" />
+                    Inventory
+                </a>
+            </div>
+            
         </div>
 
         <!-- Product Cards -->

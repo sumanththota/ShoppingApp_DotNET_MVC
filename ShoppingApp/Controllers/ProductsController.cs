@@ -19,7 +19,9 @@ public class ProductsController : Controller
         var product = await _context.Products.ToListAsync();
         return View(product);
     }
-
+    
+    // CRUD actions...
+    
     public IActionResult Create()
     {
         return View();

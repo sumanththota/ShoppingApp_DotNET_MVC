@@ -31,6 +31,7 @@ builder.Services.AddSession(options =>
     options.Cookie.IsEssential = true;
 });
 
+//Stripe configuration
 StripeConfiguration.ApiKey =
     "sk_test_51R5zvrHcMSUslYQYetHTnJijC1m9r6HiKfn7PyRmlfFZZsiTzmcQ5AnfhYWtrmBsp1XDMpEYWfZNWvju8t7dMset00Tym1x09H";
 var app = builder.Build();

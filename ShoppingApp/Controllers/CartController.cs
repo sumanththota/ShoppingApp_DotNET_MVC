@@ -25,6 +25,7 @@ public class CartController : Controller
     {
         sessionId = Request.Cookies["cartSessionId"];
         
+        // Fetch the cart using the session ID
         var cart = await _context.Carts
             .Include(c => c.Items)
             .FirstOrDefaultAsync(c => c.SessionId == sessionId);
@@ -32,11 +33,8 @@ public class CartController : Controller
         {
             return RedirectToAction("Index", "Shop");
         }
-      
-        
+        // Fetch the cart items for the cart
         List<CartItem> cartItems = await _context.CartItems.Where(ci => ci.CartId == cart.Id).ToListAsync();
-        
-      
         
         return View(cartItems);
     }
@@ -58,7 +56,7 @@ public class CartController : Controller
             };
             _context.Carts.Add(cart);
         }
-        
+        // Check if the item already exists in the cart
         var existingItem = cart.Items.FirstOrDefault(i => i.ProductId == productId);
         if (existingItem != null)
         {

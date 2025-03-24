@@ -34,6 +34,8 @@ public class CheckoutController : Controller
             .FirstOrDefaultAsync(c => c.SessionId == sessionId);
         
         List<CartItem> cartItems = await _context.CartItems.Where(ci => ci.CartId == cart.Id).ToListAsync();
+        
+        // Calculate the total amount of the cart items
         decimal total = cartItems.Sum(item => item.Price * item.Quantity);
         
         _logger.LogInformation("Creating checkout session");

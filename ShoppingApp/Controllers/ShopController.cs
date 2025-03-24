@@ -20,15 +20,15 @@ namespace MyApp.Controllers
         public async Task<IActionResult> Index(Category? category)
         {
 
-
+            // Fetch all products from the database
             var products = category == null
                 ? _context.Products.ToList()
                 : _context.Products.Where(product => product.Category == category).ToList();
 
+            // Pass the list of categories to the view
             ViewBag.Categories = Enum.GetValues(typeof(Category)).Cast<Category>().ToList();
             return View(products);
         }
 
-        // Other actions...
     }
 }

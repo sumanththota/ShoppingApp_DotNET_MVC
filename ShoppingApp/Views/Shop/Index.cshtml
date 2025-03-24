@@ -1,17 +1,27 @@
 @model List<ShoppingApp.Models.Product>
 @{
     ViewData["Title"] = "Shop";
+    
+    //Fetched the categories from the Http Request Context
     var selectedCategory = Context.Request.Query["category"].ToString();
+    
+    // ViewBag is used to pass data from the controller to the view
     var categories = ViewBag.Categories as List<ShoppingApp.Models.Category>;
+    
+    // nullable enum to store the selected category
     ShoppingApp.Models.Category? selectedCategoryEnum = null;
+    
+    // Parse the selected category string to enum
     if (!string.IsNullOrEmpty(selectedCategory))
     {
-        selectedCategoryEnum = Enum.TryParse<ShoppingApp.Models.Category>(selectedCategory, out var parsedCategory) ? parsedCategory : (ShoppingApp.Models.Category?)null;
+        selectedCategoryEnum = Enum.TryParse<ShoppingApp.Models.Category>(selectedCategory, out var parsedCategory) 
+            ? parsedCategory 
+            : (ShoppingApp.Models.Category?)null;
     }
 }
 <div class="d-flex justify-content-end mt-3 me-4">
     <a class="nav-link text-dark fw-bold d-flex align-items-center" asp-area="" asp-controller="Cart" asp-action="Index">
-        <img src="~/shopping-cart.svg" alt="Cart" width="20" height="20" class="me-2" />
+        <img src="~/shopping-cart.svg" alt="Cart" width="25" height="25" class="me-2" />
         Cart
     </a>
 </div>

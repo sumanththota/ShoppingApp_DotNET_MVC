@@ -44,10 +44,10 @@
 }
 <div class="d-flex justify-content-end align-items-center mt-3">
     <h4 class="me-3">Total:</h4>
-    <h4 class="text-primary">$@totalPrice.ToString("0.00")</h4>
+    <h4 class="text-p`rimary">$@totalPrice.ToString("0.00")</h4>
 </div>
 
       <div style="display: flex; justify-content: flex-end; margin-top: 20px;">
-          <a href="/Checkout" class="btn btn-success btn-lg">Proceed to Checkout</a>
+          <a  class="btn btn-success btn-lg" asp-controller="Checkout" asp-action="Checkout">Proceed to Checkout</a>
       </div>
   </div>

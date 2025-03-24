@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using ShoppingApp.Data;
+using Stripe;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,7 +30,8 @@ builder.Services.AddSession(options =>
     options.Cookie.IsEssential = true;
 });
 
-
+StripeConfiguration.ApiKey =
+    "sk_test_51R5zvrHcMSUslYQYetHTnJijC1m9r6HiKfn7PyRmlfFZZsiTzmcQ5AnfhYWtrmBsp1XDMpEYWfZNWvju8t7dMset00Tym1x09H";
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

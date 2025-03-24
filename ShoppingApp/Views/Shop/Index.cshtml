@@ -22,9 +22,9 @@
 <style>
     /* Custom style for active category list items to improve contrast and aesthetics */
     .list-group-item.active {
-        background-color: #ffdd57 !important;  /* A warm, contrasting gold */
-        border-color: #ffc107 !important;
-        color: #333 !important;
+        background-color: #ffdd57;  /* A warm, contrasting gold */
+        border-color: #ffc107;
+        color: #333;
     }
     /* Smooth transition for background and text colors */
     .list-group-item {
@@ -86,23 +86,6 @@
                                     <input type="hidden" name="sessionId" id="sessionId-@product.Id" />
                                     <button type="submit" class="btn btn-outline-primary w-100">Add to Cart</button>
                                 </form>
-                                <script>
-                                    // Ensure sessionId exists in localStorage
-                                    let sessionId = localStorage.getItem("cartSessionId");
-                                    if (!sessionId) {
-                                        sessionId = crypto.randomUUID();
-                                        localStorage.setItem("cartSessionId", sessionId);
-                                    }
-
-                                    // Set sessionId for each product form
-                                    document.addEventListener("DOMContentLoaded", function () {
-                                        document.querySelectorAll('input[id^="sessionId-"]').forEach(input => {
-                                            input.value = sessionId;
-                                        });
-                                        console.log("Session ID set:", sessionId);
-                                    });
-                                    document.cookie = "cartSessionId=" + sessionId + "; path=/; Secure; SameSite=Lax";
-                                </script>
                             </div>
                         </div>
                     </div>
@@ -111,3 +94,20 @@
         </div>
     </div>
 </div>
+<script>
+    // Ensure sessionId exists in localStorage
+    let sessionId = localStorage.getItem("cartSessionId");
+    if (!sessionId) {
+        sessionId = crypto.randomUUID();
+        localStorage.setItem("cartSessionId", sessionId);
+    }
+
+    // Set sessionId for each product form
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll('input[id^="sessionId-"]').forEach(input => {
+            input.value = sessionId;
+        });
+        console.log("Session ID set:", sessionId);
+    });
+    document.cookie = "cartSessionId=" + sessionId + "; path=/; Secure; SameSite=Lax";
+</script>

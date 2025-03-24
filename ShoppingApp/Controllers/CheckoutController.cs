@@ -1,4 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using ShoppingApp.Data;
+using ShoppingApp.Models;
 using Stripe.Checkout;
 
 namespace ShoppingApp.Controllers;
@@ -8,10 +11,13 @@ namespace ShoppingApp.Controllers;
 public class CheckoutController : Controller
 {
     private readonly ILogger<CheckoutController> _logger;
+    private ApplicationDbContext _context;
+    private string sessionId { get; set; }
     
-    public CheckoutController(ILogger<CheckoutController> logger)
+    public CheckoutController(ILogger<CheckoutController> logger, ApplicationDbContext context)
     {
         _logger = logger;
+        _context = context;
     }
     public IActionResult Checkout()
     {
@@ -19,8 +25,16 @@ public class CheckoutController : Controller
     }
   
     [HttpPost]
-    public ActionResult Create()
+    public async Task<IActionResult> Create()
     {
+        sessionId = Request.Cookies["cartSessionId"];
+        
+        var cart = await _context.Carts
+            .Include(c => c.Items)
+            .FirstOrDefaultAsync(c => c.SessionId == sessionId);
+        
+        List<CartItem> cartItems = await _context.CartItems.Where(ci => ci.CartId == cart.Id).ToListAsync();
+        decimal total = cartItems.Sum(item => item.Price * item.Quantity);
         
         _logger.LogInformation("Creating checkout session");
         var domain = "http://localhost:4242";
@@ -34,7 +48,7 @@ public class CheckoutController : Controller
                     PriceData = new SessionLineItemPriceDataOptions
                     {
                         Currency = "usd",
-                        UnitAmount = 2500, // amount in cents
+                        UnitAmount = (long)(total * 100), // amount in cents
                         ProductData = new SessionLineItemPriceDataProductDataOptions
                         {
                             Name = "Shopping Cart Items"

@@ -10,12 +10,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="style.css" />
     <script src="https://js.stripe.com/v3/"></script>
-    <script src="checkout.js" defer></script>
+    <script src="./js/checkout.js" defer></script>
 </head>
 <body>
 <!-- Display a payment form -->
 <div id="checkout">
     <!-- Checkout will insert the payment form here -->
 </div>
+
+<!-- Cancel Payment Button -->
+<button id="cancelPaymentButton" class="btn btn-danger" onclick="window.location.href='/Cart/Index'">Cancel Payment</button>
+
 </body>
 </html>

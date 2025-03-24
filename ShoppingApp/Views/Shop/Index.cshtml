@@ -94,23 +94,6 @@
         </div>
     </div>
 </div>
-@* <script> *@
-@*     // Ensure sessionId exists in localStorage *@
-@*     let sessionId = localStorage.getItem("cartSessionId"); *@
-@*     if (!sessionId) { *@
-@*         sessionId = crypto.randomUUID(); *@
-@*         localStorage.setItem("cartSessionId", sessionId); *@
-@*     } *@
-@* *@
-@*     // Set sessionId for each product form *@
-@*     document.addEventListener("DOMContentLoaded", function () { *@
-@*         document.querySelectorAll('input[id^="sessionId-"]').forEach(input => { *@
-@*             input.value = sessionId; *@
-@*         }); *@
-@*         console.log("Session ID set:", sessionId); *@
-@*     }); *@
-@*     document.cookie = "cartSessionId=" + sessionId + "; path=/; Secure; SameSite=Lax"; *@
-@* </script> *@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/uuid/8.3.2/uuidv4.min.js"  crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
     // Ensure sessionId exists in localStorage

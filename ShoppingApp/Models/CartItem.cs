@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ShoppingApp.Models;
 
@@ -16,6 +17,7 @@ public class CartItem
 
     [Range(1, 100, ErrorMessage = "Quantity must be between 1 and 100.")]
     public int Quantity { get; set; }
+    [ForeignKey("Cart")] 
     public int CartId { get; set; }
     public Cart Cart { get; set; } = default!;
 

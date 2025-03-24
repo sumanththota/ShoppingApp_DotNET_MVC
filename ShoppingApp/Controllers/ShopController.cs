@@ -19,6 +19,8 @@ namespace MyApp.Controllers
 
         public async Task<IActionResult> Index(Category? category)
         {
+            HttpContext.Session.SetString("SessionKey", "SomeValue");
+
 
             var products = category == null
                 ? _context.Products.ToList()

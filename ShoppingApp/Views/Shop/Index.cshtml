@@ -101,7 +101,7 @@
                                         });
                                         console.log("Session ID set:", sessionId);
                                     });
-                                    document.cookie = "cartSessionId=" + sessionId + "; path=/";
+                                    document.cookie = "cartSessionId=" + sessionId + "; path=/; Secure; SameSite=Lax";
                                 </script>
                             </div>
                         </div>

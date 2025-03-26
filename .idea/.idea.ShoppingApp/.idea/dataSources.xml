@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="ShopDB@database-sqlserver.ckptn7db2lof.us-east-1.rds.amazonaws.com" uuid="2635b4e8-f7b9-446f-9fc8-e72ecb74d219">
-      <driver-ref>sqlserver.jb</driver-ref>
-      <synchronize>true</synchronize>
-      <configured-by-url>true</configured-by-url>
-      <jdbc-driver>com.jetbrains.jdbc.sqlserver.SqlServerDriver</jdbc-driver>
-      <jdbc-url>Server=database-sqlserver.ckptn7db2lof.us-east-1.rds.amazonaws.com;User Id=admin;Password=Shoppingapp;Database=ShopDB;TrustServerCertificate=True;</jdbc-url>
-      <working-dir>$ProjectFileDir$</working-dir>
-    </data-source>
     <data-source source="LOCAL" name="ShopDB@localhost" uuid="055fdf3c-43f1-4761-8c93-d7190f617058">
       <driver-ref>sqlserver.jb</driver-ref>
       <synchronize>true</synchronize>
       <configured-by-url>true</configured-by-url>
       <jdbc-driver>com.jetbrains.jdbc.sqlserver.SqlServerDriver</jdbc-driver>
       <jdbc-url>Server=localhost;Database=ShopDB;User=sa;Password=Docker@123;TrustServerCertificate=True;</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+    <data-source source="LOCAL" name="ShopDB@shopnext-sqlserver.ckptn7db2lof.us-east-1.rds.amazonaws.com" uuid="f30aeef1-f315-4116-8ab0-e40f9eca3a4d">
+      <driver-ref>sqlserver.jb</driver-ref>
+      <synchronize>true</synchronize>
+      <configured-by-url>true</configured-by-url>
+      <jdbc-driver>com.jetbrains.jdbc.sqlserver.SqlServerDriver</jdbc-driver>
+      <jdbc-url>Server=shopnext-sqlserver.ckptn7db2lof.us-east-1.rds.amazonaws.com;User Id=admin;Password=Shoppingapp;Database=ShopDB;TrustServerCertificate=True;</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>

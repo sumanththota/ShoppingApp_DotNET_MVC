@@ -49,7 +49,7 @@ steps:
       artifactName: 'app'
   - task: S3Upload@1
     inputs:
-      awsCredentials: 'AWS-summanth'
+      awsCredentials: 'AWS-sumanth'
       regionName: 'us-east-1'
       bucketName: '$(artifact_bucket)'
       targetFolder: $(s3_path)
@@ -60,7 +60,7 @@ steps:
   - task: BeanstalkDeployApplication@1
     displayName: 'Deploy to Elastic Beanstalk'
     inputs:
-      awsCredentials: 'AWS-summanth'
+      awsCredentials: 'AWS-sumanth'
       regionName: 'us-east-1'
       applicationName: 'ShopNext'
       environmentName: 'ShopNext-env'

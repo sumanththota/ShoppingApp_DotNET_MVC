@@ -62,7 +62,7 @@ steps:
     inputs:
       awsCredentials: 'AWS-sumanth'
       regionName: 'us-east-1'
-      applicationName: 'Shopnext1'
-      environmentName: 'Shopnext1-env'
+      applicationName: 'shoponext'
+      environmentName: 'Shoponext-env'
       applicationType: 'aspnetCoreLinux'
       dotnetPublishPath: '$(Build.ArtifactStagingDirectory)/app/ShoppingApp.zip'

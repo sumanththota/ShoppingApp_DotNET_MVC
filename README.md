@@ -5,7 +5,7 @@ Welcome to ShoppingApp. This project highlights my development skills through ra
 
 
 
-🌐 **[Shop NEXT Live Link](http://www.shopnext.name)**
+🌐 **[Shop NEXT Live Link](http://shopnext1.us-east-1.elasticbeanstalk.com/)**
 
 
 

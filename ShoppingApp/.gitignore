@@ -11,6 +11,8 @@ obj/
 *.user
 *.lock.json
 *.ide
+# in .gitignore
+**/Properties/launchSettings.json
 
 # Build artifacts (project-specific)
 /ShoppingApp/obj/

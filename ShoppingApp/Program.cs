@@ -8,8 +8,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 var connectionString = Environment.GetEnvironmentVariable("RdsConnectionString") 
-                       ?? builder.Configuration.GetConnectionString("RdsConnectionString") 
-                       ?? throw new InvalidOperationException("Connection string 'RdsConnectionString' not found.");
+                       ?? builder.Configuration.GetConnectionString("DefaultConnection") 
+                       ?? throw new InvalidOperationException("Connection string 'ConnectionString' not found.");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 
